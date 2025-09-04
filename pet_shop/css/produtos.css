@@ -1,0 +1,107 @@
+/*
+/* Reset básico */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Título principal */
+h2 {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Container dos produtos */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Card do produto */
+.produto-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 15px;
+  transition: box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.produto-card:hover {
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* Imagem do produto */
+.produto-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Título e descrição */
+.produto-card h5 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.produto-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/* Preço */
+.produto-card .preco {
+  font-size: 16px;
+  font-weight: bold;
+  color: #28a745;
+  margin-top: 10px;
+}
+
+/* Botão */
+.btn-vermais {
+  margin-top: 15px;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.btn-vermais.cachorro {
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.btn-vermais.cachorro:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-vermais.gato {
+  color: #17a2b8;
+  border: 1px solid #17a2b8;
+}
+
+.btn-vermais.gato:hover {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .produto-card img {
+    height: 160px;
+  }
+}

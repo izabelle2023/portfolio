@@ -1,0 +1,210 @@
+<?php
+$produtos = [
+  ['id' => 1, 'nome' => 'Ração Gatos Adultos', 'preco' => 89.90, 'imagem' => 'img/racao%20(1).png', 'estoque' => 5],
+  ['id' => 2, 'nome' => 'Brinquedo de Pelúcia', 'preco' => 29.90, 'imagem' => 'img/pelucia%20(1).png', 'estoque' => 0],
+  ['id' => 3, 'nome' => 'Areia Higiênica', 'preco' => 39.90, 'imagem' => 'img/areia%20(1).png', 'estoque' => 12],
+  ['id' => 4, 'nome' => 'Coleira com Pingente', 'preco' => 19.90, 'imagem' => 'img/coleira%20(1).png', 'estoque' => 3],
+];
+?>
+
+
+$mensagem = '';
+if (isset($_GET['adicionar'])) {
+  $id = intval($_GET['adicionar']);
+  foreach ($produtos as $produto) {
+    if ($produto['id'] === $id) {
+      if ($produto['estoque'] > 0) {
+        $mensagem = [
+          'tipo' => 'sucesso',
+          'texto' => "🟢 O produto <strong>{$produto['nome']}</strong> foi adicionado ao carrinho com sucesso!"
+        ];
+      } else {
+        $mensagem = [
+          'tipo' => 'erro',
+          'texto' => "🔴 O produto <strong>{$produto['nome']}</strong> está fora de estoque. Entre em contato com o responsável."
+        ];
+      }
+    }
+  }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Produtos para Gatos</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fefefe;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #343a40;
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header nav a {
+      color: #ffc107;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff6f61;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .mensagem {
+      padding: 15px 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .mensagem.sucesso {
+      background-color: #d4edda;
+      color: #155724;
+      border-left: 6px solid #28a745;
+    }
+
+    .mensagem.erro {
+      background-color: #f8d7da;
+      color: #721c24;
+      border-left: 6px solid #dc3545;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .produto {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+      padding: 15px;
+      text-align: center;
+    }
+
+    .produto img {
+      max-width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .produto h3 {
+      font-size: 1rem;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .produto p {
+      font-weight: bold;
+      color: #28a745;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+    }
+
+    footer a {
+      color: #ffc107;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>Amor Ao Pet</strong></div>
+    <nav>
+      <a href="index.php">Home</a>
+      <a href="produtos.php">Produtos</a>
+      <a href="cadastro.php">Meu cadastro</a>
+      <a href="carrinho.php">Carrinho</a>
+      <a href="logout.php">Sair</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>🐱 Produtos para Gatos</h1>
+
+    <?php if ($mensagem): ?>
+      <div class="mensagem <?php echo $mensagem['tipo']; ?>">
+        <?php echo $mensagem['texto']; ?>
+      </div>
+    <?php endif; ?>
+
+    <div class="grid">
+      <?php foreach ($produtos as $p): ?>
+        <div class="produto">
+          <img src="<?php echo $p['imagem']; ?>" alt="<?php echo $p['nome']; ?>">
+          <h3><?php echo $p['nome']; ?></h3>
+          <p>R$ <?php echo number_format($p['preco'], 2, ',', '.'); ?></p>
+          <a href="gato.php?adicionar=<?php echo $p['id']; ?>" class="btn">Adicionar</a>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
+  <footer>
+    <p>Amor Ao Pet © 2025</p>
+    <nav>
+      <a href="index.php">Home</a>
+      <a href="produtos.php">Produtos</a>
+      <a href="cadastro.php">Meu cadastro</a>
+      <a href="carrinho.php">Carrinho</a>
+      <a href="logout.php">Sair</a>
+    </nav>
+  </footer>
+</body>
+</html>

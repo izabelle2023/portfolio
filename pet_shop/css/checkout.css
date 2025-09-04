@@ -1,0 +1,144 @@
+
+/* Container principal */
+.checkout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1100px;
+    margin: 40px auto;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+/* Coluna esquerda (Resumo) */
+.resumo {
+    flex: 1;
+    background: #fff;
+    padding: 25px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.resumo h3 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #444;
+}
+
+.list-group {
+    margin-bottom: 20px;
+}
+
+.list-group-item {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    padding: 15px;
+    font-size: 16px;
+    color: #555;
+}
+
+.total {
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff6f61;
+    margin-top: 15px;
+}
+
+/* Coluna direita (Formulário) */
+.dados {
+    flex: 2;
+    background: #fff;
+    padding: 25px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.dados h3 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #444;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #ff6f61;
+    outline: none;
+    box-shadow: 0 0 4px rgba(255, 111, 97, 0.3);
+}
+
+/* Botão */
+button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: #ff6f61;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #d94c3f;
+}
+
+/* Seção extra pagamento */
+#pagamento-extra {
+    margin-top: 15px;
+}
+
+#pagamento-extra p {
+    font-size: 15px;
+    text-align: left;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+    .checkout-container {
+        flex-direction: column;
+    }
+
+    .resumo,
+    .dados {
+        width: 100%;
+    }
+
+    .total {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    form input,
+    form select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 12px;
+    }
+}

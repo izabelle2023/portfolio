@@ -11,7 +11,8 @@ if (!isset($_SESSION['nome'])) {
 <head>
     <meta charset="UTF-8">
     <title>Painel</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/painel.css">
+
 </head>
 <body>
     <div class="container mt-5">
