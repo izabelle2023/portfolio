@@ -73,7 +73,3 @@ Estou disponível para oportunidades, projetos e parcerias. Vamos conversar!
 ***
 
 Obrigado por visitar meu portfólio. Espero que estas páginas possam inspirar confiança e interesse na minha capacidade como desenvolvedora.
-
-***
-
-Se quiser, posso ajudar a personalizar ainda mais com base em algum projeto ou experiência específica que queira destacar.
