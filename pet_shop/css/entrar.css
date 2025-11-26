@@ -1,0 +1,62 @@
+/* Estilo geral do formulário */
+form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Campos de entrada */
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Botão de login */
+input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #ED6436;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #ED6436cc;
+}
+
+/* Botão de cadastro */
+a.btn-cadastro {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #ED6436;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+a.btn-cadastro:hover {
+  background-color: #ED6436cc;
+}

@@ -1,0 +1,145 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+include 'conexao.php'; // Certifique-se do caminho correto
+
+$carrinho = $_SESSION['carrinho'] ?? [];
+
+if (empty($carrinho)) {
+    die("Seu carrinho está vazio.");
+}
+
+// Processa o formulário
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = trim($_POST['nome']);
+    $cpf = trim($_POST['cpf']);
+    $email = trim($_POST['email']);
+    $telefone = trim($_POST['telefone']);
+    $cep = trim($_POST['cep']);
+    $rua = trim($_POST['rua']);
+    $numero = trim($_POST['numero']);
+    $complemento = trim($_POST['complemento']);
+    $bairro = trim($_POST['bairro']);
+    $cidade = trim($_POST['cidade']);
+    $estado = trim($_POST['estado']);
+    $pagamento = $_POST['pagamento'];
+
+    // Validação simples
+    if (!$nome || !$cpf || !$email || !$telefone || !$cep || !$rua || !$numero || !$bairro || !$cidade || !$estado || !$pagamento) {
+        die("Por favor, preencha todos os campos obrigatórios.");
+    }
+
+    // Inserir usuário (ou obter existente pelo email)
+    $stmt = $conexao->prepare("SELECT id FROM usuarios WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($usuario_id);
+        $stmt->fetch();
+    } else {
+        $senha = password_hash('1234', PASSWORD_DEFAULT); // senha padrão
+        $stmtInsert = $conexao->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
+        $stmtInsert->bind_param("sss", $nome, $email, $senha);
+        $stmtInsert->execute();
+        $usuario_id = $stmtInsert->insert_id;
+    }
+
+    // Calcula total do carrinho
+    $total = 0;
+    foreach ($carrinho as $item) {
+        $total += $item['preco'] * $item['quantidade'];
+    }
+
+    // Inserir pedido
+    $stmtPedido = $conexao->prepare("INSERT INTO pedidos (usuario_id, total, pagamento, status) VALUES (?, ?, ?, 'pendente')");
+    $stmtPedido->bind_param("ids", $usuario_id, $total, $pagamento);
+    $stmtPedido->execute();
+    $pedido_id = $stmtPedido->insert_id;
+
+    // Inserir itens do pedido
+    $stmtItem = $conexao->prepare("INSERT INTO pedido_itens (pedido_id, produto_id, quantidade, preco_unitario) VALUES (?, ?, ?, ?)");
+    foreach ($carrinho as $item) {
+        $stmtItem->bind_param("iiid", $pedido_id, $item['id'], $item['quantidade'], $item['preco']);
+        $stmtItem->execute();
+    }
+
+    // Limpar carrinho
+    unset($_SESSION['carrinho']);
+
+    // Simular envio de e-mail
+    echo "<h2>Pedido realizado com sucesso!</h2>";
+    echo "<p>Número do pedido: $pedido_id</p>";
+    echo "<p>Total: R$ " . number_format($total, 2, ',', '.') . "</p>";
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; display: flex; gap: 20px; }
+        .resumo, .dados { background: #fff; padding: 20px; border-radius: 8px; flex: 1; }
+        h2 { margin-top: 0; color: #333; }
+        input, select { width: 100%; padding: 8px; margin-bottom: 10px; }
+        button { padding: 10px 20px; background: #ff6f61; color: #fff; border: none; cursor: pointer; border-radius: 4px; }
+        button:hover { background: #d94c3f; }
+        .item { border-bottom: 1px solid #ddd; padding: 5px 0; }
+        .total { font-weight: bold; text-align: right; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>Checkout</h1>
+
+<div class="container">
+    <!-- Resumo do carrinho -->
+    <div class="resumo">
+        <h2>Resumo do Carrinho</h2>
+        <?php $total = 0; foreach ($carrinho as $item): ?>
+            <div class="item">
+                <p><strong><?php echo $item['nome']; ?></strong></p>
+                <p>Quantidade: <?php echo $item['quantidade']; ?></p>
+                <p>Preço: R$ <?php echo number_format($item['preco'], 2, ',', '.'); ?></p>
+            </div>
+            <?php $total += $item['preco'] * $item['quantidade']; ?>
+        <?php endforeach; ?>
+        <div class="total">Total: R$ <?php echo number_format($total, 2, ',', '.'); ?></div>
+    </div>
+
+    <!-- Formulário de dados do cliente -->
+    <div class="dados">
+        <h2>Dados do Cliente</h2>
+        <form method="post" id="checkoutForm">
+            <input type="text" name="nome" placeholder="Nome completo" required>
+            <input type="text" name="cpf" placeholder="CPF" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="text" name="telefone" placeholder="Telefone" required>
+            <input type="text" name="cep" placeholder="CEP" required>
+            <input type="text" name="rua" placeholder="Rua" required>
+            <input type="text" name="numero" placeholder="Número" required>
+            <input type="text" name="complemento" placeholder="Complemento">
+            <input type="text" name="bairro" placeholder="Bairro" required>
+            <input type="text" name="cidade" placeholder="Cidade" required>
+            <input type="text" name="estado" placeholder="Estado" required>
+            <select name="pagamento" required>
+                <option value="">Escolha a forma de pagamento</option>
+                <option value="cartao">Cartão de Crédito</option>
+                <option value="pix">PIX</option>
+                <option value="boleto">Boleto</option>
+            </select>
+            <button type="submit">Finalizar Pedido</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
+            

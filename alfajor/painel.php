@@ -1,9 +1,18 @@
 <?php
+<<<<<<< HEAD
 include('verifica_login.php');
+=======
+session_start();
+if (!isset($_SESSION['nome'])) {
+    header('Location: index.php');
+    exit;
+}
+>>>>>>> c8c573566050621a4a456124af49f78cfa6b8dc3
 ?>
 
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 
 <head>
   <meta charset="utf-8" />
@@ -59,6 +68,21 @@ include('verifica_login.php');
     </header>
 
     <section class=" slider_section position-relative">
+=======
+<head>
+    <meta charset="UTF-8">
+    <title>Painel</title>
+    <link rel="stylesheet" href="css/painel.css">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Bem-vinda, <?php echo $_SESSION['nome']; ?>!</h2>
+        <a href="logout.php" class="btn btn-danger mt-3">Sair</a>
+    </div>
+</body>
+</html>
+>>>>>>> c8c573566050621a4a456124af49f78cfa6b8dc3
 
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">

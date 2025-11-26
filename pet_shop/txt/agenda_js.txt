@@ -1,0 +1,65 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("formAgenda");
+  const steps = Array.from(document.querySelectorAll(".form-step"));
+  let currentStep = 0;
+  let enviado = false;
+
+  showStep(currentStep);
+
+  document.body.addEventListener("click", (e) => {
+    if (e.target.classList.contains("next-btn")) {
+      if (!validateStep(steps[currentStep])) return;
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+
+    if (e.target.classList.contains("prev-btn")) {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    }
+  });
+
+  form.addEventListener("submit", (e) => {
+    if (enviado) {
+      e.preventDefault();
+      return;
+    }
+
+    if (!validateStep(steps[currentStep])) {
+      e.preventDefault();
+      return;
+    }
+
+    enviado = true;
+  });
+
+  function showStep(index) {
+    steps.forEach((step, i) => {
+      step.classList.toggle("active", i === index);
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function validateStep(stepEl) {
+    const requiredFields = stepEl.querySelectorAll("input[required], select[required], textarea[required]");
+    let valid = true;
+
+    requiredFields.forEach((field) => {
+      const errorMsg = field.parentElement.querySelector(".error-message");
+      if (!field.value.trim()) {
+        field.classList.add("error");
+        if (errorMsg) errorMsg.style.display = "block";
+        valid = false;
+      } else {
+        field.classList.remove("error");
+        if (errorMsg) errorMsg.style.display = "none";
+      }
+    });
+
+    return valid;
+  }
+});

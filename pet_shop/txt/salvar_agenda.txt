@@ -1,0 +1,55 @@
+<?php
+$servername = "localhost";
+$username   = "root";     // padrão XAMPP
+$password   = "";         // padrão XAMPP
+$dbname     = "pet";      // nome do seu banco
+
+// Conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexão
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
+}
+
+// Capturar e tratar os dados
+$nome       = $_POST['nome'];
+$email      = $_POST['email'];
+$cpf        = $_POST['cpf'];
+$celular    = $_POST['celular'];
+$telefone   = $_POST['telefone'];
+$nome_pet   = $_POST['nome_pet'];
+$idade      = $_POST['idade'];
+$dtnasc     = $_POST['dtnasc'];
+$raca       = $_POST['raca'];
+$servicos   = isset($_POST['servico']) ? implode(", ", $_POST['servico']) : "";
+$localidade = isset($_POST['localidade']) ? implode(", ", $_POST['localidade']) : "";
+$data_serv  = $_POST['data_servico'];
+$hora_serv  = $_POST['hora_servico'];
+
+// Preparar a query
+$stmt = $conn->prepare("INSERT INTO agenda 
+(nome, email, cpf, celular, telefone, nome_pet, idade, dtnasc, raca, servicos, localidade, data_servico, hora_servico) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+// Verificar se a preparação deu certo
+if ($stmt === false) {
+    die("Erro na preparação da query: " . $conn->error);
+}
+
+// Vincular os parâmetros
+$stmt->bind_param("ssssssissssss", 
+    $nome, $email, $cpf, $celular, $telefone, $nome_pet, $idade, $dtnasc, $raca, $servicos, $localidade, $data_serv, $hora_serv
+);
+
+// Executar
+if ($stmt->execute()) {
+    echo "<script>alert('Agendamento realizado com sucesso!'); window.location.href='agenda.php';</script>";
+} else {
+    echo "Erro ao salvar: " . $stmt->error;
+}
+
+// Fechar
+$stmt->close();
+$conn->close();
+?>

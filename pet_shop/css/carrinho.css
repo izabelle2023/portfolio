@@ -1,0 +1,116 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fdfdfd;
+  font-family: 'Nunito Sans', sans-serif;
+  color: #333;
+}
+
+/* Título da página */
+h1 {
+  text-align: center;
+  margin: 40px 0 20px;
+  font-size: 32px;
+  color: #444;
+}
+
+/* Link de voltar */
+.voltar {
+  display: block;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #ff6f61;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.voltar:hover {
+  color: #d94c3f;
+}
+
+/* Link de checkout */
+.checkout {
+  display: block;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #ff6f61;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.checkout:hover {
+  color: #d94c3f;
+}
+
+/* Container dos itens */
+.item {
+  max-width: 800px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.item h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.item p {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #666;
+}
+
+/* Total */
+.total {
+  max-width: 800px;
+  margin: 30px auto;
+  text-align: right;
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff6f61;
+}
+
+/* Mensagem de carrinho vazio */
+p {
+  text-align: center;
+  font-size: 18px;
+  color: #999;
+  margin-top: 40px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .item {
+    margin: 0 15px 20px;
+    padding: 15px;
+  }
+
+  .total {
+    margin: 30px 15px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .item h3 {
+    font-size: 18px;
+  }
+
+  .item p {
+    font-size: 15px;
+  }
+}

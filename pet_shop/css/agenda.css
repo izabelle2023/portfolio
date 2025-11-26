@@ -1,0 +1,212 @@
+/* ============================
+   RESET E CONFIGURAÇÕES GERAIS
+=============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================
+   CABEÇALHO E NAVBAR
+=============================== */
+.navbar-brand h1 {
+  font-weight: 800;
+  font-size: 1.8rem;
+}
+
+.logo-primary {
+  color: #ED6436;
+}
+
+.logo-dark {
+  color: #343a40;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+  margin: 0 0.5rem;
+  transition: 0.3s;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-item.active .nav-link {
+  color: #ED6436;
+}
+
+.navbar-dark .dropdown-menu {
+  background-color: #343a40;
+}
+
+.navbar-dark .dropdown-item {
+  color: #fff;
+}
+
+.navbar-dark .dropdown-item:hover {
+  background-color: #ED6436;
+}
+
+/* ============================
+   FORMULÁRIO DE AGENDAMENTO
+=============================== */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* Etapas */
+.form-step {
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.form-step.active {
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Títulos */
+.form-step h4 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+/* Campos */
+.form-control,
+.form-select {
+  border-radius: 6px;
+  box-shadow: none;
+  margin-bottom: 15px;
+}
+
+/* Feedback visual */
+input:valid {
+  border-color: #28a745;
+}
+
+input:invalid {
+  border-color: #dc3545;
+}
+
+/* ============================
+   BOTÕES
+=============================== */
+button,
+input[type="submit"] {
+  background-color: #ED6436;
+  color: #fff;
+  padding: 10px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-right: 10px;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #d9531e;
+}
+
+.next-btn {
+  background-color: #ED6436;
+}
+
+.prev-btn {
+  background-color: #6c757d;
+}
+
+.prev-btn:hover {
+  background-color: #5a6268;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* ============================
+   RODAPÉ
+=============================== */
+footer, .container-fluid.bg-dark {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.container-fluid.bg-dark h5 {
+  font-weight: 700;
+  color: #ED6436;
+}
+
+.container-fluid.bg-dark a {
+  color: #fff;
+  transition: 0.3s;
+}
+
+.container-fluid.bg-dark a:hover {
+  color: #ED6436;
+}
+
+/* ============================
+   RESPONSIVIDADE
+=============================== */
+@media (max-width: 768px) {
+  .buttons {
+    flex-direction: column;
+  }
+
+  .buttons button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .row-agendamento {
+    flex-direction: column;
+  }
+
+  form {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
