@@ -2,19 +2,22 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <title>Engenheira de Software</title>
+    <title>Izabelle Ferreira - Engenheira de Software</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/portfolio.css" />
   </head>
 
   <body>
+    <!-- Camada de flores sutis -->
+    <div class="flores"></div>
+
     <main class="container">
       <!-- HERO -->
       <header class="hero">
         <p class="tag">Engenheira de</p>
         <h1>Software</h1>
         <p class="subtitle">
-          Sou engenheira de software com foco em desenvolvimento front-end,
-          criando interfaces limpas, intuitivas e acessíveis.
+          Crio interfaces limpas, intuitivas e acessíveis, com foco em front-end e experiências agradáveis.
         </p>
 
         <div class="hero-buttons">
@@ -25,92 +28,69 @@
 
       <!-- SOBRE -->
       <section class="about">
-        <img
-          src="img/flor.jpg"
-          alt="Ilustração de uma flor"
-          class="flor-um"
-        />
-
         <h2>Sobre mim</h2>
-
         <p>
-          Sou engenheira de software com interesse em desenvolvimento web,
-          interfaces agradáveis e experiências acessíveis.
-        </p>
-
-        <p>
-          Tenho experiência em projetos front-end e estou em constante
-          aprendizado, sempre aberta a novos desafios na área de tecnologia.
+          Sou formada em Engenharia de Software pela UCB, com experiência em projetos front-end e desenvolvimento web. Gosto de transformar ideias em interfaces funcionais e elegantes.
         </p>
       </section>
 
       <!-- PROJETOS -->
       <section class="projects" id="projetos">
-        <img
-          src="img/flor_dois.jpg"
-          alt="Ilustração de flor complementar"
-          class="flor-dois"
-        />
-
         <h2>Projetos</h2>
-
         <div class="projects-grid">
+
+          <!-- Card Projeto Alfajor -->
+          <article class="card">
+            <h3>Alfajor (E-commerce)</h3>
+            <p>Plataforma de e-commerce para venda de doces artesanais. Front-end em HTML/CSS/JS, back-end em PHP.</p>
+            <div class="card-actions">
+              <a href="alfajor/index.php" target="_blank" class="card-link">Ver sistema</a>
+              <a href="https://www.youtube.com/seu-video-alfajor" target="_blank" class="card-link">Ver vídeo</a>
+              <a href="#" class="card-link">Ver documentação</a>
+            </div>
+          </article>
+
+          <!-- Card Projeto Farmácia Online -->
+          <article class="card">
+            <h3>Farmácia Online</h3>
+            <p>Venda de medicamentos e produtos de saúde. Destaque para design responsivo e checkout funcional.</p>
+            <div class="card-actions">
+              <a href="#" class="card-link">Ver sistema</a>
+              <a href="https://www.youtube.com/seu-video-farmacia" target="_blank" class="card-link">Ver vídeo</a>
+              <a href="#" class="card-link">Ver documentação</a>
+            </div>
+          </article>
+
+          <!-- Card Projeto Pet Shop -->
+          <article class="card">
+            <h3>Pet Shop</h3>
+            <p>Plataforma para venda de produtos e serviços pet. Inclui sistema de agendamento de serviços.</p>
+            <div class="card-actions">
+              <a href="pet_shop/index.php" class="card-link">Ver sistema</a>
+              <a href="https://www.youtube.com/seu-video-petshop" target="_blank" class="card-link">Ver vídeo</a>
+              <a href="#" class="card-link">Ver documentação</a>
+            </div>
+          </article>
+
+          <!-- Card Projeto Sistema de Eventos -->
           <article class="card">
             <h3>Sistema de Eventos</h3>
-            <p>
-              Aplicação completa para cadastro e gerenciamento de eventos e
-              participantes.
-            </p>
-            <a href="evento/home.php" target="_blank" class="card-link">
-              Ver no GitHub
-            </a>
+            <p>Cadastro e gerenciamento de eventos e participantes, com foco em UX e facilidade de uso.</p>
+            <div class="card-actions">
+              <a href="evento/home.php" class="card-link">Ver sistema</a>
+              <a href="https://www.youtube.com/seu-video-eventos" target="_blank" class="card-link">Ver vídeo</a>
+              <a href="#" class="card-link">Ver documentação</a>
+            </div>
           </article>
 
-          <article class="card">
-            <h3>Farmácia Online (E-commerce)</h3>
-            <p>
-              Plataforma de e-commerce responsiva para venda de medicamentos e
-              produtos de saúde.
-            </p>
-            <a
-              href="farmacia/frontend/app.json"
-              target="_blank"
-              class="card-link"
-            >
-              Ver no GitHub
-            </a>
-          </article>
-
-          <article class="card">
-            <h3>Pet Shop (E-commerce)</h3>
-            <p>
-              Plataforma de e-commerce e serviços voltados para animais de
-              estimação.
-            </p>
-            <a href="pet_shop/index.php" target="_blank" class="card-link">
-              Ver no GitHub
-            </a>
-          </article>
-
-          <article class="card empty-card">
-            <h3>Em breve</h3>
-            <p>Novo projeto em desenvolvimento.</p>
-            <span class="card-link placeholder-link">...</span>
-          </article>
-
-          <article class="card empty-card">
-            <h3>Em breve</h3>
-            <p>Novo projeto em desenvolvimento.</p>
-            <span class="card-link placeholder-link">...</span>
-          </article>
         </div>
       </section>
+
+      <footer class="footer">
+        <p>© 2025 Izabelle Ferreira</p>
+      </footer>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <p>© 2024 Engenheira de Software. Todos os direitos reservados.</p>
-    </footer>
     <script src="js/portfolio.js"></script>
   </body>
 </html>
