@@ -1,6 +1,5 @@
 <?php
 session_start();
-<<<<<<< HEAD
 include("conexao.php");
 
 $nome = mysqli_real_escape_string($conexao, trim($_POST['nome']));
@@ -28,7 +27,7 @@ if($conexao->query($sql) === TRUE) {
 $conexao->close();
 
 header('Location: cadastro.php');
-=======
+
 include('conexao.php');
 
 $nome = mysqli_real_escape_string($conexao, trim($_POST['nome']));
@@ -55,6 +54,6 @@ if ($conexao->query($sql) === TRUE) {
 
 $conexao->close();
 header('Location: index.php');
->>>>>>> c8c573566050621a4a456124af49f78cfa6b8dc3
+
 exit;
 ?>

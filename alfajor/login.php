@@ -2,7 +2,6 @@
 session_start();
 include('conexao.php');
 
-<<<<<<< HEAD
 if(empty($_POST['usuario']) || empty($_POST['senha'])) {
 	header('Location: index.php');
 	exit();
@@ -26,7 +25,7 @@ if($row == 1) {
 	$_SESSION['nao_autenticado'] = true;
 	header('Location: index.php');
 	exit();
-=======
+}
 if (empty($_POST['usuario']) || empty($_POST['senha'])) {
     header('Location: index.php');
     exit;
@@ -47,6 +46,5 @@ if ($usuario_bd && password_verify($senha, $usuario_bd['senha'])) {
     $_SESSION['nao_autenticado'] = true;
     header('Location: index.php');
     exit;
->>>>>>> c8c573566050621a4a456124af49f78cfa6b8dc3
 }
 ?>

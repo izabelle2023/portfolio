@@ -8,24 +8,20 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-<<<<<<< HEAD
-
   <title>UNIVERSO DE ALFAJOR</title>
 
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
 
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-
-=======
   <title>UNIVERSO DE ALFAJOR</title>
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
->>>>>>> c8c573566050621a4a456124af49f78cfa6b8dc3
   <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,600,700&display=swap" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="favicon" href="images/logo.png" type="image/gif" />
 </head>
 
 
