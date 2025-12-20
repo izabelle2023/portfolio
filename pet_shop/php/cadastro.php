@@ -89,31 +89,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </div>
 
-    <!-- Menu -->
-     <!-- Menu -->
-      <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
-            <a href="" class="navbar-brand d-block d-lg-none">
-                <h1 class="m-0 display-5 text-capitalize"><span class="text-primary">Amor</span> Au Pet</h1>
-            </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                <div class="navbar-nav mr-auto py-0">
-                    <a href="index.php" class="nav-item nav-link active">Principal</a>
-                    <div class="nav-item dropdown">
-                        <a href="../php/gato.php" class="nav-item nav-link">Gato</a>   
-                        <a href="../php/cachorro.php" class="nav-item nav-link">Cachorro</a>    
-                    </div>  
-                        <a href="#" class="nav-item nav-link">Promoção</a>                  
-                        <a href="#" class="nav-item nav-link">Novidades</a>
-                        <a href="entrar.php" class="nav-item nav-link">Entrar</a>
-                        <a href="agenda.php" class="nav-item nav-link">Agenda sua visita</a>                                     
-                </div>              
+<!-- Menu -->
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
+        <a href="index.php" class="navbar-brand d-block d-lg-none">
+            <h1 class="m-0 display-5 text-capitalize"><span class="text-primary">Amor</span> Au Pet</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+            <div class="navbar-nav mr-auto py-0">
+                <a href="index.php" class="nav-item nav-link active">Principal</a>
+                <a href="cachorro.php" class="nav-item nav-link">Cachorros</a>
+                <a href="gato.php" class="nav-item nav-link">Gatos</a>
+                <a href="promocao.php" class="nav-item nav-link">Promoção</a>
+                <a href="#" class="nav-item nav-link">Novidades</a>
+                <a href="entrar.php" class="nav-item nav-link">Entrar</a>
+                <a href="agenda.php" class="nav-item nav-link">Agende sua visita</a>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
+</div>
+
     <!-- Fim do Menu -->
 
     <br>

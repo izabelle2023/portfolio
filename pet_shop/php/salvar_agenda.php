@@ -1,6 +1,13 @@
-<?php 
+<?php
 session_start();
-include("conexao.php"); 
+require_once "conexao.php";
+
+/* CONEXÃO */
+$conn = new mysqli($host, $usuario, $senha, $banco);
+if ($conn->connect_error) {
+    die("Erro na conexão: " . $conn->connect_error);
+}
+
 // Recebe os dados do formulário
 $nome         = $_POST['nome'] ?? '';
 $email        = $_POST['email'] ?? '';

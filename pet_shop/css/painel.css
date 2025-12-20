@@ -17,7 +17,6 @@ body {
     flex-direction: column;
     background: #fff;
     color: #333;
-    line-height: 1.5;
 }
 
 /* =========================
@@ -29,7 +28,6 @@ body {
     align-items: center;
     padding: 20px 40px;
     background: #fff;
-    border-bottom: 1px solid #eee;
 }
 
 .logo {
@@ -45,7 +43,6 @@ body {
     display: flex;
     gap: 40px;
     font-size: 14px;
-    color: #555;
 }
 
 /* =========================
@@ -68,8 +65,7 @@ body {
     color: #fff;
     text-decoration: none;
     padding: 12px 18px;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+    transition: background 0.3s;
 }
 
 .navbar ul li a:hover,
@@ -87,59 +83,68 @@ body {
 .nav-user a {
     color: #f26a36;
     text-decoration: none;
-    font-weight: bold;
 }
 
 /* =========================
-   ITENS / CARRINHO
+   CONTEÚDO PRINCIPAL
 ========================= */
-.item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
+main {
+    flex: 1;
+    padding: 60px 20px;
+    text-align: center;
 }
 
-.item:last-child {
-    border-bottom: none;
+main h2 {
+    margin-bottom: 10px;
+}
+
+/* =========================
+   CARRINHO
+========================= */
+.cart {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: left;
+}
+
+.cart table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.cart th,
+.cart td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.cart th {
+    background: #f5f5f5;
 }
 
 .total {
-    font-size: 18px;
+    margin-top: 10px;
     font-weight: bold;
-    color: #000;
-    margin-top: 20px;
-    text-align: right;
 }
 
-/* =========================
-   BOTÕES
-========================= */
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
+.cart-actions {
+    margin-top: 15px;
 }
 
-button {
-    background-color: #28a745;
+.cart-actions a {
+    margin-right: 10px;
+    color: #f26a36;
+    text-decoration: none;
+}
+
+.cart-actions .btn {
+    background: #f26a36;
     color: #fff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
-}
-
-button:focus {
-    outline: 2px solid #f26a36;
-    outline-offset: 2px;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 /* =========================
@@ -150,44 +155,4 @@ footer {
     color: #fff;
     text-align: center;
     padding: 25px 0;
-    font-size: 0.9rem;
-}
-
-/* =========================
-   RESPONSIVIDADE
-========================= */
-@media (max-width: 768px) {
-    .top-bar, .navbar {
-        padding: 15px 20px;
-    }
-
-    .top-info {
-        gap: 20px;
-        font-size: 13px;
-    }
-
-    .navbar ul li a {
-        padding: 10px 12px;
-    }
-
-    .buttons {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    button {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-
-    .total {
-        text-align: left;
-    }
 }

@@ -8,45 +8,18 @@ if ($conn->connect_error) {
     die("Erro na conexão: " . $conn->connect_error);
 }
 
-/* VALIDA PEDIDO */
-$pedido_id = filter_input(INPUT_GET, 'pedido_id', FILTER_VALIDATE_INT);
-if (!$pedido_id) {
-    die("Pedido inválido.");
-}
-
-/* BUSCA DADOS DO PEDIDO */
-$sql_pedido = "
-    SELECT p.id, p.total, p.pagamento, u.nome, u.email
-    FROM pedidos p
-    INNER JOIN usuarios u ON p.usuario_id = u.id
-    WHERE p.id = ?
+/* BUSCA PRODUTOS EM PROMOÇÃO ATIVA */
+$sql = "
+    SELECT p.id, p.nome, p.descricao, p.preco, p.imagem, pr.preco_promocional
+    FROM produtos p
+    INNER JOIN promocoes pr ON p.id = pr.produto_id
+    WHERE CURDATE() BETWEEN pr.inicio AND pr.fim
 ";
-$stmt = $conn->prepare($sql_pedido);
-$stmt->bind_param("i", $pedido_id);
-$stmt->execute();
-$resultado = $stmt->get_result();
-
-if ($resultado->num_rows === 0) {
-    die("Pedido não encontrado.");
+$resultado = $conn->query($sql);
+if(!$resultado){
+    die("Erro na consulta SQL: " . $conn->error);
 }
-
-$pedido = $resultado->fetch_assoc();
-
-/* BUSCA ITENS DO PEDIDO */
-$sql_itens = "
-    SELECT pr.nome, pi.quantidade, pi.preco_unitario
-    FROM pedido_itens pi
-    INNER JOIN produtos pr ON pi.produto_id = pr.id
-    WHERE pi.pedido_id = ?
-";
-$stmt = $conn->prepare($sql_itens);
-$stmt->bind_param("i", $pedido_id);
-$stmt->execute();
-$itens = $stmt->get_result();
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-
 <head>
     <meta charset="utf-8">
     <title>AMOR AU PET</title>
@@ -71,7 +44,7 @@ $itens = $stmt->get_result();
 <body>
 
    <!-- Cabeçalho -->
-   <!-- Cabeçalho -->
+  <!-- Cabeçalho -->
     <div class="container-fluid">
         <div class="row py-3 px-lg-5">
             <div class="col-lg-4">
@@ -96,8 +69,9 @@ $itens = $stmt->get_result();
     </div>
 
     <!-- Menu -->
+     <!-- Menu -->
       <div class="container-fluid p-0">
-       <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
             <a href="" class="navbar-brand d-block d-lg-none">
                 <h1 class="m-0 display-5 text-capitalize"><span class="text-primary">Amor</span> Au Pet</h1>
             </a>
@@ -106,66 +80,50 @@ $itens = $stmt->get_result();
             </button>
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
-                    <a href="index.php" class="nav-item nav-link active">Principal</a>
-                    <div class="nav-item dropdown">
-                        <a href="../php/cachorro.php" class="nav-item nav-link">Cachorros</a>       
+                    <a href="../index.php" class="nav-item nav-link active">Principal</a>
+                    <div class="nav-item dropdown">  
                     </div>  
-                        <a href="../php/gato.php" class="nav-item nav-link">Gatos</a>  
-                        <a href="../php/promocao.php" class="nav-item nav-link">Promoção</a>     
-                        <a href="../php/agenda.php" class="nav-item nav-link">Agenda sua visita</a>                                     
+                    <a href="cachorro.php" class="nav-item nav-link">Cachorro</a>        
+                     <a href="gato.php" class="nav-item nav-link">Gato</a>
+                    <a href="entrar.php" class="nav-item nav-link">Entrar</a>
+                        <a href="agenda.php" class="nav-item nav-link">Agenda sua visita</a>                                     
                 </div>              
             </div>
         </nav>
     </div>
     <!-- Fim do Menu -->
 
-<!-- CONTEÚDO -->
 <div class="container my-5">
-    <h1 class="text-success mb-3">✅ Pedido Confirmado!</h1>
+    <h1 class="text-success mb-4">📢 Promoções Ativas</h1>
 
-    <p>
-        Obrigado, <strong><?= htmlspecialchars($pedido['nome']) ?></strong>.
-        Seu pedido foi realizado com sucesso.
-    </p>
-
-    <p><strong>Email:</strong> <?= htmlspecialchars($pedido['email']) ?></p>
-    <p><strong>Método de Pagamento:</strong> <?= htmlspecialchars($pedido['pagamento']) ?></p>
-
-    <hr>
-
-    <h3>📦 Itens do Pedido</h3>
-
-    <?php if ($itens->num_rows > 0): ?>
-        <?php while ($item = $itens->fetch_assoc()): ?>
-            <div class="d-flex justify-content-between border-bottom py-2">
-                <span><?= htmlspecialchars($item['nome']) ?> x <?= $item['quantidade'] ?></span>
-                <span>
-                    R$ <?= number_format($item['preco_unitario'] * $item['quantidade'], 2, ',', '.') ?>
-                </span>
-            </div>
-        <?php endwhile; ?>
+    <?php if($resultado->num_rows > 0): ?>
+        <div class="row">
+            <?php while($produto = $resultado->fetch_assoc()): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card promo-card h-100 position-relative">
+                        <div class="promo-badge">Promoção</div>
+                        <img src="../img/<?= htmlspecialchars($produto['imagem']) ?>" class="card-img-top" alt="<?= htmlspecialchars($produto['nome']) ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($produto['nome']) ?></h5>
+                            <p class="card-text"><?= htmlspecialchars($produto['descricao']) ?></p>
+                            <p class="price">
+                                <span class="old-price">R$ <?= number_format($produto['preco'],2,',','.') ?></span>
+                                <span class="promo-price">R$ <?= number_format($produto['preco_promocional'],2,',','.') ?></span>
+                            </p>
+                            <a href="carrinho.php?add=<?= $produto['id'] ?>" class="btn btn-success btn-block">Adicionar ao Carrinho</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        </div>
     <?php else: ?>
-        <p>Nenhum item encontrado para este pedido.</p>
+        <p>Nenhuma promoção disponível no momento.</p>
     <?php endif; ?>
 
-    <h4 class="mt-4">
-        Total: <strong>R$ <?= number_format($pedido['total'], 2, ',', '.') ?></strong>
-    </h4>
 
-    <p class="mt-3">Você receberá um email de confirmação em breve.</p>
-
-    <div class="mt-4">
-        <button class="btn btn-outline-secondary" onclick="window.print()">
-            <i class="fa fa-print"></i> Imprimir Confirmação
-        </button>
-
-        <a href="../index.php" class="btn btn-primary ml-2">
-            Página principal
-        </a>
-    </div>
+    
 </div>
-
-<!-- Rodapé -->
+ <!-- Rodapé -->
     <div class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
         <div class="row pt-5">
             <div class="col-lg-4 col-md-12 mb-5">
@@ -203,7 +161,15 @@ $itens = $stmt->get_result();
             </div>
         </div>
     </div>
-<?php
-$stmt->close();
-$conn->close();
-?>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="../js/agenda.js"></script>  
+</body>
+</html>
