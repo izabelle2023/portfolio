@@ -1,180 +1,246 @@
-.tab {
-    background-color: #A91528!important;
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
-#navbar_marca {
+/* ================= VARIÁVEIS ================= */
+:root {
+    --cor-primaria: #A91528;
+    --cor-secundaria: #7f0f1d;
+    --cor-fundo: #f5f6f8;
+    --cor-card: #ffffff;
+    --cor-texto: #333;
+    --cor-texto-sec: #666;
+    --cor-branco: #ffffff;
+    --borda-suave: rgba(0,0,0,0.08);
+    --sombra-card: 0 8px 22px rgba(0,0,0,0.08);
+    --sombra-hover: 0 14px 30px rgba(0,0,0,0.14);
+}
+
+/* ================= BODY ================= */
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.5;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    background-color: var(--cor-primaria);
+    padding: 8px 0; /* ↓ diminui a altura */
+}
+
+.navbar-content {
+    max-width: 900px;
+    margin: auto;
+    padding: 0 16px; /* ↓ menos espaço lateral */
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-#logo {
-    font-size: 30px;
-}
-
-#logo img {
-    width: 60px;
-    border-radius: 50%;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-#menu {
-    width: 200px;
-}
-
-#menu img {
-    width: 40px;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-#barra_pesquisa {
-    margin-left: 2%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-
-#card {
-    background-color: #c9c9c9;
-    width: 16rem;
-    margin-bottom: 10%;
-}
-
-#card_principal_cadastro {
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-
-#Card_principal {
-    background-color: #b9b9b9;
-    margin-top: 6%;
-    margin-left: 10%;
-    width: 77%;
+/* LOGO */
+.logo-area {
     display: flex;
-    border-radius: 2%;
+    align-items: center;
+    gap: 10px;
+    color: var(--cor-branco);
+    font-size: 18px; /* ↓ texto um pouco menor */
+    font-weight: 600;
 }
 
-#card_direita {
+.logo-area img {
+    width: 52px;   /* ↑ logo maior */
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ÍCONES DO MENU */
+.menu-icons a img {
+    width: 34px;   /* ↑ ícones maiores */
+    height: 34px;
+    margin-left: 20px;
+    transition: transform 0.2s ease;
+}
+
+.menu-icons a img:hover {
+    transform: scale(1.15);
+}
+
+
+/* ================= BUSCA ================= */
+.search-section {
+    margin: 36px auto 20px;
+    padding: 0 20px;
+}
+
+.search-bar {
+    max-width: 620px;
     margin: auto;
-    background-color: #A91528;
-    border-radius: 2%;
+    display: flex;
 }
 
-#card_direita h1 {
-    text-align: center;
-    color: white;
+.search-bar input {
+    flex: 1;
+    padding: 13px 14px;
+    font-size: 15px;
+    border: 1px solid var(--borda-suave);
+    border-radius: 8px 0 0 8px;
+    outline: none;
 }
 
-#card_esquerda h1 {
-    color: white;
+.search-bar button {
+    padding: 13px 22px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    border: none;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-#card_esquerda {
+.search-bar button:hover {
+    background-color: var(--cor-secundaria);
+}
+
+/* ================= CONTAINER ================= */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px 20px 20px;
+}
+
+/* ================= GRID DE CARDS ================= */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+}
+
+/* ================= CARD EVENTO ================= */
+.card-evento {
+    background-color: var(--cor-card);
+    border-radius: 14px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    border: 1px solid var(--borda-suave);
+    box-shadow: var(--sombra-card);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.x {
-    margin: 120px;
+.card-evento:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sombra-hover);
 }
 
-.entrada {
-    margin-left: 35%;
-}
-
-.form-control {
-    width: 80%!important;
-    margin-left: 10%;
-}
-
-.form-login a {
-    margin-left: 36%;
-    margin-top: 5%;
-}
-
-.form-label {
-    margin-left: 10%;
-    margin-bottom: 2%;
-}
-
-#botao_login {
-    margin-left: 25%;
-    margin-top: 8%;
-    margin-bottom: 7%;
-}
-
-#botao_cadastro {
-    margin-left: 25%;
-    margin-top: 8%;
-    margin-bottom: 7%;
-}
-
-.btn-entrar {
-    color: #FFF;
-    background-color: #DC3545;
-    width: 50%;
-    padding: 10px 15px;
-    font-size: 1.1em;
-}
-
-.btn-entrar:hover {
-    border-color: 1px solid black;
-    box-shadow: 0px 0px 5px black;
-    color: white;
-}
-
-.btn-cadastrar {
-    color: #FFF;
-    background-color: #DC3545;
-    width: 50%;
-    padding: 10px 15px;
-    font-size: 1.1em;
-}
-
-.btn-cadastrar:hover {
-    border-color: 1px solid black;
-    box-shadow: 0px 0px 5px black;
-    color: white;
-}
-
-.logo_grande {
-    width: 300px;
-    height: 300px;
-    border-radius: 5px;
-}
-
-.logo_grande img {
+/* ================= IMAGEM ================= */
+.card-evento img {
     width: 100%;
-    height: auto;
-    border-radius: 50%; 
+    height: 200px;
+    object-fit: cover;
+    background-color: #eaeaea;
 }
 
-.card-container {
+/* ================= CORPO ================= */
+.card-body {
+    padding: 18px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    flex: 1;
 }
 
-.card {
-    margin: 10px;
+/* ================= TÍTULO ================= */
+.card-body h5 {
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--cor-primaria);
+    margin-bottom: 12px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-
-footer {
-    height: 50px;
-    background-color: #A91528;
-    color: white; /* Certifica-se de que o texto seja branco */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
+/* ================= TEXTO ================= */
+.card-body p {
+    font-size: 14.5px;
+    color: var(--cor-texto-sec);
+    margin-bottom: 6px;
 }
 
-.rodape {
-    color: white;
+/* ================= BOTÃO ================= */
+.card-body .btn {
+    margin-top: auto;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 0.3px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.card-body .btn:hover {
+    background-color: var(--cor-secundaria);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* ================= MENSAGEM VAZIA ================= */
+.text-center {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 18px;
+    color: var(--cor-texto-sec);
+    margin-top: 50px;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    text-align: center;
+    padding: 16px;
+    font-size: 14px;
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 768px) {
+    .navbar-content {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .search-bar input,
+    .search-bar button {
+        border-radius: 8px;
+    }
+
+    .search-bar button {
+        margin-top: 10px;
+    }
+
+    .card-evento img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-body h5 {
+        font-size: 17px;
+    }
+}

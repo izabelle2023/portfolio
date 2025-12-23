@@ -1,0 +1,183 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BASE ===== */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background-color: #8B0000;
+    padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.navbar:hover {
+    background-color: #a00000;
+}
+
+.navbar-content {
+    max-width: 960px;
+    margin: auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo-area img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.logo-area img:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.menu-icons a img {
+    width: 30px;
+    height: 30px;
+    margin-left: 16px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.menu-icons a img:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ===== ALERTAS ===== */
+.success {
+    background-color: #e6f4ea;
+    border-left: 6px solid #28a745;
+    color: #155724;
+    padding: 18px 22px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.error {
+    background-color: #fdecea;
+    border-left: 6px solid #dc3545;
+    color: #721c24;
+    padding: 18px 22px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+/* ===== EMAIL / NOTIFICAÇÃO ===== */
+.email-box {
+    background-color: white;
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.email-box h2 {
+    color: #8B0000;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.email-box p {
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+/* ===== QR CODE ===== */
+.qr-area {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.qr-area img {
+    width: 220px;
+    height: 220px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.pix-label {
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #8B0000;
+    color: white;
+    margin-top: auto;
+}
+
+footer .rodape {
+    font-size: 13px;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+    .navbar-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-icons {
+        margin-top: 10px;
+        display: flex;
+        gap: 12px;
+    }
+
+    .email-box h2 {
+        font-size: 20px;
+    }
+
+    .email-box p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-area span {
+        font-size: 16px;
+    }
+}
